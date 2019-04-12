@@ -3,7 +3,7 @@ import Text from "../components/Text";
 
 let ROOT_NODE_INSTANCE = null;
 
-function getHostContextNode(rootNode) {
+const getHostContextNode = rootNode => {
   if (typeof rootNode !== undefined) {
     ROOT_NODE_INSTANCE = rootNode;
   } else {
@@ -15,17 +15,17 @@ function getHostContextNode(rootNode) {
   }
 
   return ROOT_NODE_INSTANCE;
-}
+};
 
-// Creates an element with an element type, props and a root instance
-function createElement(type, props) {
-  const COMPONENTS = {
-    ROOT: () => new WordDocument(),
-    TEXT: () => new Text(ROOT_NODE_INSTANCE, props),
-    default: undefined
-  };
-
-  return COMPONENTS[type]() || COMPONENTS.default;
-}
+const createElement = (type, props) => {
+  switch (type) {
+    case "ROOT":
+      return new WordDocument();
+    case "Text":
+      return new Text(ROOT_NODE_INSTANCE, props);
+    default:
+      throw new Error(`Unknown element: ${type}`);
+  }
+};
 
 export { createElement, getHostContextNode };

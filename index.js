@@ -1,6 +1,6 @@
 import React from "react";
 
-import render from "./src/render";
+import WordRenderer from "./src/reconciler";
 import App from "./src/App";
 
-render(<App />, `${__dirname}/document.docx`);
+WordRenderer.render(<App />, `${__dirname}/document.docx`);

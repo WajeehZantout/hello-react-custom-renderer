@@ -1,6 +1,6 @@
 import React from "react";
 
-const Text = "TEXT";
+import { Text } from "./components";
 
 const App = () => <Text>Hello World!</Text>;
 
